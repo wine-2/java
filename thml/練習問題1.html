@@ -1,0 +1,58 @@
+<html lang="ja">
+    <head>
+    </head>
+    <body>
+        <div id="message">
+        </div>
+        <form>
+            <hr/>
+            <label>氏名：</label>
+            <input type="text" name="name"  id="inputName"  maxlength="100" value="" placeholder="氏名を入力してください">
+            <br/>
+            <label>年齢：</label>
+            <input type="number" name="age" id="inputAge" value="">
+            <br/>
+            <label>パスワード：</label>
+            <input type="text" name="mail" id="inputpas" maxlength="100" value="" placeholder="8文字以上">
+            <br/>
+            <input type="button" id="btnSubmit" value="送信する">
+        </form>
+    </body>
+</html>
+<script>
+    window.onload = function(){
+        /*各画面オブジェクト*/
+        const inputName = document.getElementById('inputName');
+        const inputAge = document.getElementById('inputAge');
+        const inputMail = document.getElementById('inputpas');
+        const reg = /[A-Za-z]{8,}/;
+        const pag = /[\W]/;
+        const peg = /[0-150]/;
+        
+        
+        btnSubmit.addEventListener('click', function(event) {
+            let message = [];
+            /*入力値チェック*/
+            if(inputName.value ==""){
+                message.push("氏名が未入力です。");
+            }else if(!pag.test(inputName.value)){
+                message.push("氏名を正しく入力してください。");
+            }
+            if(inputAge.value==""){
+                message.push("年齢が未入力です。");
+            }else if(!peg.test(inputAge.value)){
+                message.push("年齢を正しく入力してください。");
+            }
+            if(inputpas.value==""){
+                message.push("パスワードが未入力です。");
+            }else if(!reg.test(inputpas.value)){
+                message.push("パスワードの形式が不正です。");
+            }
+            if(message.length > 0){
+                alert(message);
+                return;
+            }
+            alert('入力チェックOK');
+        });
+    };
+</script>

@@ -1,0 +1,89 @@
+<html lang="ja">
+    <head>
+    </head>
+    <body>
+        <div id="message">
+        </div>
+        <form>
+            <hr/>
+            <label>1「ABC」から始まる文字列：</label>
+            <input type="text" name="name"  id="inputName"  maxlength="100" value="" >
+            <br/>
+            <label>2「ABC」から始まり「XYZ」で終わる文字列：</label>
+            <input type="text" name="age" id="inputAge" maxlength="100" value="">
+            <br/>
+            <label>3「DEF」が含まれる文字列：</label>
+            <input type="text" name="mail" id="inputpas" maxlength="100" value="">
+            <br/>
+            <label>4「@」の前後に１文字以上存在している文字列：</label>
+            <input type="text" name="4" id="input4" maxlength="100" value="">
+            <br/>
+            <label>5 ０～９までの整数で構成される3ケタの数字：</label>
+            <input type="text" name="5" id="input5" maxlength="100" value="">
+            <br/>
+            <label>6 数字と大文字アルファベットを含まない文字列：</label>
+            <input type="text" name="6" id="input6" maxlength="100" value="">
+            <br/>
+            <input type="button" id="btnSubmit" value="送信する">
+        </form>
+    </body>
+</html>
+<script>
+    window.onload = function(){
+        /*各画面オブジェクト*/
+        const inputName = document.getElementById('inputName');
+        const inputAge = document.getElementById('inputAge');
+        const inputpas = document.getElementById('inputpas');
+        const input4 = document.getElementById('input4');
+        const input5 = document.getElementById('input5');
+        const input6 = document.getElementById('input6');
+        const reg1 = /^ABC/;
+        const reg2 = /^ABC.*XYZ$/;
+        const reg3 = /DEF/;
+        const reg4 = /^[A-Za-z0-9]{1,}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9]{1,}$/;
+        const reg5 = /[0-9]{3}/;
+        const reg6 = /[^0-9A-Z]/;
+        
+        
+        
+        btnSubmit.addEventListener('click', function(event) {
+            let message = [];
+            /*入力値チェック*/
+            if(inputName.value ==""){
+                message.push("氏名が未入力です。");
+            }else if(!reg1.test(inputName.value)){
+                message.push("氏名を正しく入力してください。1");
+            }
+            if(inputAge.value==""){
+                message.push("年齢が未入力です。");
+            }else if(!reg2.test(inputAge.value)){
+                message.push("年齢を正しく入力してください。2");
+            }
+            if(inputpas.value==""){
+                message.push("パスワードが未入力です。");
+            }else if(!reg3.test(inputpas.value)){
+                message.push("パスワードの形式が不正です。3");
+            }
+            if(input4.value==""){
+                message.puch("入力してください");
+            }else if(!reg4.test(input4.value)){
+                message.push("違うよ～ん4")
+            }
+            if(input5.value==""){
+                message.puch("入力してください");
+            }else if(!reg5.test(input5.value)){
+                message.push("違うよ～ん5")
+            }
+            if(input6.value==""){
+                message.puch("入力してください");
+            }else if(!reg6.test(input6.value)){
+                message.push("違うよ～ん6")
+            }
+            if(message.length > 0){
+                alert(message);
+                return;
+            }
+            alert('入力チェックOK');
+        });
+    };
+</script>
